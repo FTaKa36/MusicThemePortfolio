@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FaathirTaKa (TK) — Multi-Disciplinary Developer</title>
+  <meta name="description" content="Faathir Kuspratama Pasha — known as FaathirTaKa, TaKa, Pasha, or TK. Multi-disciplinary developer building websites, Flutter mobile apps, and games." />
+  <meta name="theme-color" content="#14100f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FaathirTaKa (TK) — Multi-Disciplinary Developer" />
+  <meta property="og:description" content="Web, Flutter mobile, and game development by Faathir Kuspratama Pasha (FaathirTaKa / TaKa / Pasha / TK)." />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/FTaKa36" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient glow layers -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__blob ambient__blob--cherry"></div>
+    <div class="ambient__blob ambient__blob--peach"></div>
+    <div class="ambient__blob ambient__blob--rose"></div>
+    <div class="ambient__grain"></div>
+  </div>
+
+  <!-- Drifting music notes -->
+  <div class="notes" aria-hidden="true">
+    <span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9836;</span>
+    <span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9836;</span>
+  </div>
+
+  <!-- Custom cursor glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Scroll progress (equalizer style) -->
+  <div class="scroll-meter" aria-hidden="true"><span id="scrollBar"></span></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top" aria-label="FaathirTaKa home">
+        <span class="brand__disc" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="presentation">
+            <circle cx="20" cy="20" r="19" class="disc-plate" />
+            <circle cx="20" cy="20" r="6.5" class="disc-label" />
+            <circle cx="20" cy="20" r="1.8" class="disc-hole" />
+            <path d="M20 4.5a15.5 15.5 0 0 1 10.9 4.5" class="disc-glint" />
+          </svg>
+        </span>
+        <span class="brand__text">
+          <strong>FaathirTaKa</strong>
+          <em>Faathir Kuspratama Pasha</em>
+        </span>
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#playlist">Playlist</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+          <span class="theme-toggle__track">
+            <span class="theme-toggle__thumb">
+              <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M4.6 12H2.2M21.8 12h-2.4M6.3 6.3 4.6 4.6M19.4 19.4l-1.7-1.7M17.7 6.3l1.7-1.7M4.6 19.4l1.7-1.7"/></svg>
+              <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z"/></svg>
+            </span>
+          </span>
+        </button>
+        <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Available for freelance &amp; collabs
+          </p>
+
+          <h1 class="hero__title">
+            <span class="reveal">I build things</span>
+            <span class="reveal">that <em>sound</em> as good</span>
+            <span class="reveal">as they <span class="hero__accent">look</span>.</span>
+          </h1>
+
+          <p class="hero__lede reveal">
+            Hey, I'm <strong>Faathir Kuspratama Pasha</strong> — known as
+            <strong>FaathirTaKa</strong>, <strong>TaKa</strong>, <strong>Pasha</strong>, or
+            <strong>TK</strong>. A multi-disciplinary developer working across
+            <strong>websites</strong>, <strong>Flutter Android apps</strong>, and
+            <strong>visual novel games</strong>. I like interfaces with a sense of rhythm and
+            code that feels hand-played rather than machine-stamped.
+          </p>
+
+          <div class="hero__cta reveal">
+            <a class="btn btn--primary" href="#work">
+              <span>See the work</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#contact">Let's collaborate</a>
+          </div>
+
+          <dl class="hero__stats reveal">
+            <div>
+              <dt>Projects shipped</dt>
+              <dd><span data-count="6">0</span><em>+</em></dd>
+            </div>
+            <div>
+              <dt>Disciplines</dt>
+              <dd><span data-count="5">0</span></dd>
+            </div>
+            <div>
+              <dt>Years building</dt>
+              <dd><span data-count="2">0</span><em>+</em></dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Now Playing / vinyl turntable -->
+        <div class="hero__deck reveal" aria-hidden="true">
+          <div class="deck__glow"></div>
+
+          <div class="turntable">
+            <svg class="turntable__ring" viewBox="0 0 200 200" role="presentation">
+              <defs>
+                <path id="ringPath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" />
+              </defs>
+              <text class="turntable__ringtext">
+                <textPath href="#ringPath" startOffset="0%">
+                  WEB DEV · FLUTTER · GAMING · UI/UX · GIT · TAKA ·                </textPath>
+              </text>
+            </svg>
+
+            <div class="vinyl" id="vinyl">
+              <div class="vinyl__grooves"></div>
+              <div class="vinyl__label">
+                <span>TK</span>
+                <small>SIDE&nbsp;A</small>
+              </div>
+            </div>
+
+            <div class="tonearm">
+              <span class="tonearm__pivot"></span>
+              <span class="tonearm__bar"></span>
+              <span class="tonearm__head"></span>
+            </div>
+          </div>
+
+          <div class="nowplaying">
+            <div class="nowplaying__eq" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="nowplaying__meta">
+              <span class="nowplaying__tag">Now building</span>
+              <p class="nowplaying__title">Portfolio — Side A</p>
+              <p class="nowplaying__sub">FaathirTaKa · multi-disciplinary dev</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>WEBSITE DEVELOPMENT</span><span class="sep">◆</span>
+          <span>FLUTTER ANDROID</span><span class="sep">◆</span>
+          <span>GAME DEVELOPMENT</span><span class="sep">◆</span>
+          <span>UI / UX DESIGN</span><span class="sep">◆</span>
+          <span>GIT &amp; WORKFLOW</span><span class="sep">◆</span>
+          <span>WEBSITE DEVELOPMENT</span><span class="sep">◆</span>
+          <span>FLUTTER ANDROID</span><span class="sep">◆</span>
+          <span>GAME DEVELOPMENT</span><span class="sep">◆</span>
+          <span>UI / UX DESIGN</span><span class="sep">◆</span>
+          <span>GIT &amp; WORKFLOW</span><span class="sep">◆</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker reveal"><span>01</span> The Mix</p>
+          <h2 class="section__title reveal">Every skill is a <em>track</em> in the set</h2>
+          <p class="section__lede reveal">
+            Five disciplines, one workflow. Here's what I bring to the booth — from pixel-perfect
+            layouts to playable worlds.
+          </p>
+        </header>
+
+        <div class="skills">
+          <!-- 1 -->
+          <article class="skill-card reveal" style="--i:0">
+            <div class="skill-card__top">
+              <span class="skill-card__num">01</span>
+              <span class="skill-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 8.5 5.5 12 9 15.5M15 8.5 18.5 12 15 15.5"/><path d="M4 4.5h16v15H4z"/></svg>
+              </span>
+            </div>
+            <h3>Website Development</h3>
+            <p>
+              Responsive, fast front-ends and solid back-ends. Landing pages, dashboards, and
+              full-stack apps built with semantic HTML, modern CSS, and clean JavaScript.
+            </p>
+            <ul class="tags">
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li><li>Node.js</li><li>REST APIs</li>
+            </ul>
+            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+
+          <!-- 2 -->
+          <article class="skill-card reveal" style="--i:1">
+            <div class="skill-card__top">
+              <span class="skill-card__num">02</span>
+              <span class="skill-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.6h3"/></svg>
+              </span>
+            </div>
+            <h3>Mobile · Flutter</h3>
+            <p>
+              Android apps built with Flutter and Dart — pure Flutter/Dart, no Android Studio.
+              Smooth 60fps animation, offline-first state, and interfaces that feel native.
+            </p>
+            <ul class="tags">
+              <li>Flutter</li><li>Dart</li><li>Android</li><li>Riverpod</li><li>Firebase</li><li>Material 3</li>
+            </ul>
+            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+
+          <!-- 3 -->
+          <article class="skill-card reveal" style="--i:2">
+            <div class="skill-card__top">
+              <span class="skill-card__num">03</span>
+              <span class="skill-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7.5 6.5h9v11h-9z"/><path d="M9.5 3.5h5M9.5 20.5h5M4 9.5v5M20 9.5v5"/><circle cx="10.5" cy="11" r="1"/><circle cx="13.5" cy="11" r="1"/></svg>
+              </span>
+            </div>
+            <h3>Game Development</h3>
+            <p>
+              Building 2D visual novels with GDevelop 5 — branching stories, dialogue systems,
+              and level flow. Currently learning Unity to take the next step into 3D and
+              deeper gameplay work.
+            </p>
+            <ul class="tags">
+              <li>GDevelop 5</li><li>Visual Novel</li><li>2D</li><li>Learning Unity</li><li>Game Design</li>
+            </ul>
+            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+
+          <!-- 4 -->
+          <article class="skill-card reveal" style="--i:3">
+            <div class="skill-card__top">
+              <span class="skill-card__num">04</span>
+              <span class="skill-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3.5 3.5 8v8L12 20.5 20.5 16V8z"/><path d="M12 12v8.5M3.5 8 12 12l8.5-4"/></svg>
+              </span>
+            </div>
+            <h3>UI / UX Design</h3>
+            <p>
+              Interface systems with a point of view — typography, rhythm, contrast, and motion
+              that makes products read as intentional rather than templated.
+            </p>
+            <ul class="tags">
+              <li>Figma</li><li>Design Systems</li><li>Prototyping</li><li>Typography</li><li>Motion</li><li>Accessibility</li>
+            </ul>
+            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+
+          <!-- 5 -->
+          <article class="skill-card reveal" style="--i:4">
+            <div class="skill-card__top">
+              <span class="skill-card__num">05</span>
+              <span class="skill-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M14.5 5.5a4.5 4.5 0 1 0 4 6.6L22 14.5 19.5 17l-2.6-2.4a4.5 4.5 0 0 1-6.4-6.4"/><path d="M2 22l7-7"/><path d="M6 13l1.5 1.5M8.5 10.5 10 12"/></svg>
+              </span>
+            </div>
+            <h3>Tools &amp; Workflow</h3>
+            <p>
+              Version control, clean commits, readable architecture, and the boring discipline
+              that keeps a project maintainable long after launch day.
+            </p>
+            <ul class="tags">
+              <li>Git</li><li>GitHub</li><li>VS Code</li><li>Vercel</li><li>Windows</li><li>Android</li>
+            </ul>
+            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK / SETLIST ============ -->
+    <section class="section section--alt" id="work">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker reveal"><span>02</span> The Setlist</p>
+          <h2 class="section__title reveal">Selected <em>tracks</em></h2>
+          <p class="section__lede reveal">
+            A few things I've built. Swap these placeholders with your real projects —
+            each row is one line to edit in <code>index.html</code>.
+          </p>
+        </header>
+
+        <ol class="setlist">
+          <li class="setlist__item reveal" style="--i:0">
+            <span class="setlist__no">01</span>
+            <div class="setlist__body">
+              <h3>Personal Portfolio <span class="pill pill--live">Live</span></h3>
+              <p>The site you're looking at — a warm cherry theme system, motion, and a hand-built visual layer.</p>
+              <ul class="tags tags--sm"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </div>
+            <a class="setlist__link" href="https://github.com/FTaKa36" target="_blank" rel="noopener noreferrer">
+              View repo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </li>
+
+          <li class="setlist__item reveal" style="--i:1">
+            <span class="setlist__no">02</span>
+            <div class="setlist__body">
+              <h3>Flutter Android App <span class="pill">In progress</span></h3>
+              <p>Android app built with Flutter and Dart — offline storage, animated transitions, and a custom design system.</p>
+              <ul class="tags tags--sm"><li>Flutter</li><li>Dart</li><li>Android</li><li>Firebase</li></ul>
+            </div>
+            <a class="setlist__link" href="https://github.com/FTaKa36?tab=repositories" target="_blank" rel="noopener noreferrer">
+              View repo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </li>
+
+          <li class="setlist__item reveal" style="--i:2">
+            <span class="setlist__no">03</span>
+            <div class="setlist__body">
+              <h3>Visual Novel Game <span class="pill">Released</span></h3>
+              <p>A branching 2D visual novel built in GDevelop 5 — dialogue system, branching routes, character art, and save/load. My main game project.</p>
+              <ul class="tags tags--sm"><li>GDevelop 5</li><li>Visual Novel</li><li>2D</li><li>Story</li></ul>
+            </div>
+            <a class="setlist__link" href="https://github.com/FTaKa36?tab=repositories" target="_blank" rel="noopener noreferrer">
+              View repo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </li>
+
+          <li class="setlist__item reveal" style="--i:3">
+            <span class="setlist__no">04</span>
+            <div class="setlist__body">
+              <h3>Spotify Profile <span class="pill">Listening</span></h3>
+              <p>What's actually on repeat while I build — playlists, favorites, and the soundtrack to this whole site.</p>
+              <ul class="tags tags--sm"><li>Music</li><li>Playlists</li></ul>
+            </div>
+            <a class="setlist__link" href="https://open.spotify.com/user/31mhovbk6rnfsgyqvo4twkiaodse?si=4c11dfcc25fa4ef8" target="_blank" rel="noopener noreferrer">
+              Listen
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="wrap about">
+        <div class="about__visual reveal">
+          <div class="photo">
+            <img
+              src="https://avatars.githubusercontent.com/FTaKa36"
+              alt="Faathir Kuspratama Pasha"
+              width="148" height="148" loading="lazy" decoding="async"
+              onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 148 148%22%3E%3Crect width=%22148%22 height=%22148%22 fill=%22%231f1a15%22/%3E%3Ccircle cx=%2274%22 cy=%2258%22 r=%2224%22 fill=%22%2379b3e6%22/%3E%3Cpath d=%22M26 140c0-27 22-44 48-44s48 17 48 44z%22 fill=%22%2379b3e6%22/%3E%3C/svg%3E';" />
+          </div>
+          <ul class="badges">
+            <li>FaathirTaKa</li><li>TaKa</li><li>Pasha</li><li>TK</li>
+          </ul>
+
+          <div class="cassette">
+            <div class="cassette__shell">
+              <div class="cassette__label">
+                <span class="cassette__title">MIXTAPE</span>
+                <span class="cassette__sub">FaathirTaKa · SIDE A / B</span>
+                <div class="cassette__reels">
+                  <span class="reel reel--a"><i></i></span>
+                  <span class="reel reel--b"><i></i></span>
+                </div>
+                <div class="cassette__strip"></div>
+              </div>
+              <div class="cassette__screws"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__copy">
+          <p class="kicker reveal"><span>03</span> Liner Notes</p>
+          <h2 class="section__title reveal">A developer with a <em>favorite preset</em></h2>
+          <p class="reveal">
+            I'm <strong>Faathir Kuspratama Pasha</strong> — <strong>FaathirTaKa</strong>,
+            <strong>TaKa</strong>, <strong>Pasha</strong>, or just <strong>TK</strong>. I got into
+            code by wanting to make something I'd actually enjoy using, and that curiosity spread
+            outward into web, mobile, and games.
+          </p>
+          <p class="reveal">
+            My approach is simple. Understand the tempo of the problem, build the smallest thing
+            that's genuinely good, then layer detail until it feels warm and obvious in hindsight.
+          </p>
+
+          <ul class="facts">
+            <li class="reveal"><span>Based in</span><strong>Indonesia</strong></li>
+            <li class="reveal"><span>Focus</span><strong>Web · Flutter · Games</strong></li>
+            <li class="reveal"><span>Currently</span><strong>Open to projects</strong></li>
+            <li class="reveal"><span>Plays on</span><strong>Windows &amp; Android</strong></li>
+          </ul>
+
+          <div class="about__cta reveal">
+            <a class="btn btn--primary" href="#contact">
+              <span>Start a project</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/FTaKa36" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLAYLIST / LINKS ============ -->
+    <section class="section section--alt" id="playlist">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="kicker reveal"><span>04</span> The Playlist</p>
+          <h2 class="section__title reveal">Find me on every <em>channel</em></h2>
+          <p class="section__lede reveal">Same person, different stages. Pick your platform.</p>
+        </header>
+
+        <div class="links">
+          <a class="link-card reveal" style="--i:0" href="https://github.com/FTaKa36" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2.2A10 10 0 0 0 8.8 21.7c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2.2Z"/></svg>
+            </span>
+            <div>
+              <strong>GitHub</strong>
+              <small>@FTaKa36</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:1" href="https://www.instagram.com/faathir_taka/" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1"/></svg>
+            </span>
+            <div>
+              <strong>Instagram</strong>
+              <small>@faathir_taka</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:2" href="https://www.youtube.com/@FaathirTaKa" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg>
+            </span>
+            <div>
+              <strong>YouTube</strong>
+              <small>@FaathirTaKa</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:3" href="https://steamcommunity.com/id/FaathirTaKa/" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><circle cx="15.2" cy="9" r="2.6"/><circle cx="8.4" cy="15.6" r="3.1"/><path d="M10.6 14 13 12.4"/></svg>
+            </span>
+            <div>
+              <strong>Steam</strong>
+              <small>FaathirTaKa</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:4" href="https://konect.gg/ftk" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 4.5v15M4.5 9.5v5M19.5 9.5v5"/><circle cx="12" cy="12" r="2.4"/></svg>
+            </span>
+            <div>
+              <strong>Konect</strong>
+              <small>konect.gg/ftk</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:5" href="https://open.spotify.com/user/31mhovbk6rnfsgyqvo4twkiaodse?si=4c11dfcc25fa4ef8" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M7.4 9.4c3-.8 6.2-.5 8.9 1M8 12.4c2.4-.6 5-.4 7.1.8M8.6 15.2c1.9-.5 3.8-.3 5.5.6"/></svg>
+            </span>
+            <div>
+              <strong>Spotify</strong>
+              <small>FaathirTaKa</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:6" href="https://www.tiktok.com/@faathirtaka" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14 4v9.4a3.6 3.6 0 1 1-3.6-3.6c.3 0 .6 0 .9.1"/><path d="M14 5.6c.6 2 2.2 3.3 4.3 3.4"/></svg>
+            </span>
+            <div>
+              <strong>TikTok</strong>
+              <small>@faathirtaka</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+
+          <a class="link-card reveal" style="--i:7" href="https://www.linkedin.com/in/fkp36" target="_blank" rel="noopener noreferrer">
+            <span class="link-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.9v.1M12 16v-3.2a1.9 1.9 0 0 1 3.8 0V16"/></svg>
+            </span>
+            <div>
+              <strong>LinkedIn</strong>
+              <small>in/fkp36</small>
+            </div>
+            <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="wrap contact">
+        <div class="contact__intro">
+          <p class="kicker reveal"><span>05</span> Encore</p>
+          <h2 class="section__title reveal">Got a track that needs <em>finishing</em>?</h2>
+          <p class="section__lede reveal">
+            Tell me what you're building. Whether it's a landing page, a Flutter app, or a game
+            — I'd love to hear it.
+          </p>
+
+          <ul class="contact__points">
+            <li class="reveal"><span aria-hidden="true">◆</span> Replies within 1–2 days</li>
+            <li class="reveal"><span aria-hidden="true">◆</span> Freelance &amp; long-term collabs</li>
+            <li class="reveal"><span aria-hidden="true">◆</span> Remote-friendly, worldwide</li>
+          </ul>
+        </div>
+
+        <form class="contact__form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" required placeholder="Jane Doe" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required placeholder="jane@example.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="cf-topic">What's it about?</label>
+            <select id="cf-topic" name="topic">
+              <option>Website development</option>
+              <option>Mobile app (Flutter)</option>
+              <option>Game development</option>
+              <option>Visual novel / story game</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required placeholder="A quick note about the project, timeline, and budget range..."></textarea>
+          </div>
+          <button class="btn btn--primary btn--full" type="submit">
+            <span>Send the demo</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <span class="brand__disc brand__disc--sm" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="presentation">
+            <circle cx="20" cy="20" r="19" class="disc-plate" />
+            <circle cx="20" cy="20" r="6.5" class="disc-label" />
+            <circle cx="20" cy="20" r="1.8" class="disc-hole" />
+          </svg>
+        </span>
+        <p>FaathirTaKa — built with warm cherry tones, cheap coffee, and a steady 4/4.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#playlist">Playlist</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer__meta">
+        <span>&copy; <span id="year">2026</span> Faathir Kuspratama Pasha</span>
+        <span>Hand-coded, no template.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+  </button>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
