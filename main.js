@@ -8,7 +8,7 @@
   /* ---------------------------------------------------------
      CONFIG
      --------------------------------------------------------- */
-  const CONTACT_EMAIL = "faathirkuspratamapasha36@gmail.com";
+  const CONTACT_EMAIL = "faathir.kuspratama.pasha36@gmail.com";
   const STORAGE_KEY = "ftk-theme";
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
