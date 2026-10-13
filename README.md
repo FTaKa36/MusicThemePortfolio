@@ -18,10 +18,9 @@ In short: one page that says who I am, what I make, and how to reach me.
 Plain **HTML, CSS, and JavaScript** — no build step, no frameworks, no dependencies.
 
 ```
-web/
-  index/index.html        # the whole page
-  stylesheet/style.css    # design system + all styling
-  js/main.js              # interactions (theme, nav, reveals, contact form)
+index.html        # the whole page
+style.css    # design system + all styling
+main.js              # interactions (theme, nav, reveals, contact form)
 favicon.svg               # vinyl-disc favicon
 ```
 
