@@ -317,6 +317,9 @@ html[data-theme="light"] .theme-toggle__thumb .icon-moon { display: block; }
 }
 .btn--ghost:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
 .btn--full { width: 100%; justify-content: center; }
+.btn:disabled { cursor: progress; opacity: 0.75; }
+.btn.is-sending { transform: none; box-shadow: 0 14px 34px -18px var(--glow-a); }
+.btn.is-sending svg { transform: none; }
 
 /* ---------- Eyebrow / kicker / titles ---------- */
 .eyebrow {

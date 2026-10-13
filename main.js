@@ -8,7 +8,7 @@
   /* ---------------------------------------------------------
      CONFIG
      --------------------------------------------------------- */
-  const CONTACT_EMAIL = "faathirkuspratamapasha36@gmail.com";
+  const CONTACT_EMAIL = "faathir.kuspratama.pasha36@gmail.com";
   const STORAGE_KEY = "ftk-theme";
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -215,10 +215,18 @@
   });
 
   /* ---------------------------------------------------------
-     Contact form → mailto (no backend needed)
+     Contact form → direct send (no mail app needed)
+
+     The form submits straight to a form-to-email relay, which
+     delivers the message to CONTACT_EMAIL. Nothing opens on the
+     visitor's machine; the email is sent the moment they click.
      --------------------------------------------------------- */
   const form = document.getElementById("contactForm");
   const note = document.getElementById("formNote");
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+  const submitLabel = submitBtn ? submitBtn.querySelector("span") : null;
+  const defaultLabel = submitLabel ? submitLabel.textContent : "Send the demo";
+  let sending = false;
 
   function setNote(message, kind) {
     if (!note) return;
@@ -227,9 +235,23 @@
     if (kind) note.classList.add(kind);
   }
 
+  function setSending(state) {
+    sending = state;
+    if (!submitBtn) return;
+    submitBtn.disabled = state;
+    submitBtn.classList.toggle("is-sending", state);
+    if (submitLabel) submitLabel.textContent = state ? "Sending..." : defaultLabel;
+  }
+
   if (form) {
+    // Where the direct send goes. Set to a form-to-email endpoint
+    // (e.g. FormSubmit) so the click itself delivers the message.
+    const SEND_ENDPOINT = "https://formsubmit.co/ajax/" + CONTACT_EMAIL;
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (sending) return;
+
       const name = form.elements["name"];
       const email = form.elements["email"];
       const topic = form.elements["topic"];
@@ -255,12 +277,38 @@
         "Topic: " + topic.value + "\n\n" +
         message.value.trim();
 
-      const href = "mailto:" + CONTACT_EMAIL +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+      setSending(true);
+      setNote("Sending your message...");
 
-      window.location.href = href;
-      setNote("Opening your email app — thanks, I'll reply within 1–2 days.", "is-ok");
+      fetch(SEND_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          subject: subject,
+          name: name.value.trim(),
+          email: email.value.trim(),
+          topic: topic.value,
+          message: message.value.trim(),
+          _replyto: email.value.trim(),
+          _template: "table",
+          _captcha: "false",
+          text: body
+        })
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Request failed: " + res.status);
+          return res.json();
+        })
+        .then(function () {
+          form.reset();
+          setNote("Demo request sent — thanks! I'll reply within 1–2 days.", "is-ok");
+        })
+        .catch(function () {
+          setNote("Couldn't send right now. Please try again in a moment.", "is-err");
+        })
+        .finally(function () {
+          setSending(false);
+        });
     });
 
     form.addEventListener("input", function (e) {
