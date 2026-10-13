@@ -19,9 +19,9 @@ Plain **HTML, CSS, and JavaScript** — no build step, no frameworks, no depende
 
 ```
 index.html        # the whole page
-style.css    # design system + all styling
-main.js              # interactions (theme, nav, reveals, contact form)
-favicon.svg               # vinyl-disc favicon
+style.css         # design system + all styling
+main.js           # interactions (theme, nav, reveals, contact form)
+favicon.svg       # vinyl-disc favicon
 ```
 
 ## Run locally
