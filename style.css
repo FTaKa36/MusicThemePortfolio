@@ -263,7 +263,8 @@ h1, h2, h3, p { margin: 0; }
   background: none; border: 0; padding: 0;
 }
 .theme-toggle__track {
-  display: grid; place-items: center;
+  /* flex-start keeps the knob at the left end so the travel below is exact */
+  display: flex; align-items: center;
   width: 62px; height: 32px; padding: 3px;
   border-radius: 999px;
   background: var(--surface);
@@ -279,7 +280,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .theme-toggle__thumb svg { width: 15px; height: 15px; fill: none; stroke: var(--on-accent); stroke-width: 1.9; stroke-linecap: round; }
 .theme-toggle__thumb .icon-moon { display: none; }
-html[data-theme="light"] .theme-toggle__thumb { transform: translateX(30px); }
+html[data-theme="light"] .theme-toggle__thumb { transform: translateX(28px); }
 html[data-theme="light"] .theme-toggle__thumb .icon-sun { display: none; }
 html[data-theme="light"] .theme-toggle__thumb .icon-moon { display: block; }
 
