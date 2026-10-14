@@ -3,6 +3,8 @@
 A personal **portfolio website** with a warm "coffee cherry" look and a music-inspired
 theme — turntable, vinyl records, and setlist styling carry the whole design.
 
+Link to my portfolio https://faathirkpmusicthemeportfolio.vercel.app/
+
 ## What this site is for
 
 - **Show what I build** — a project list with a short description and current status
