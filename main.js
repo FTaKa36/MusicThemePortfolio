@@ -108,11 +108,84 @@
   }, { passive: true });
   onScroll();
 
+  /* ---------------------------------------------------------
+     Back to top — a slow, eased glide
+
+     The browser's own `behavior: "smooth"` is quick and its
+     duration can't be set, so the glide is driven frame by
+     frame here instead. Duration grows with distance, keeping
+     the motion unhurried on long pages without feeling stuck
+     when the visitor is already near the top.
+     --------------------------------------------------------- */
+  let glideFrame = null;
+
+  function stopGlide() {
+    if (glideFrame === null) return;
+    cancelAnimationFrame(glideFrame);
+    glideFrame = null;
+    // Hand scrolling back to the stylesheet's `scroll-behavior: smooth`.
+    root.style.scrollBehavior = "";
+  }
+
+  function glideToTop() {
+    const from = window.scrollY || window.pageYOffset;
+    if (from <= 0) return;
+
+    if (reduceMotion) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const duration = Math.min(1900, Math.max(750, from * 0.9));
+    const start = performance.now();
+
+    // Take over scrolling for the duration: the page-level
+    // `scroll-behavior: smooth` would otherwise animate every one
+    // of our frames, turning the glide into a stutter.
+    root.style.scrollBehavior = "auto";
+
+    function step(now) {
+      const t = Math.min(1, (now - start) / duration);
+      // easeInOutCubic — gentle launch, gentle landing.
+      const eased = t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      window.scrollTo(0, Math.round(from * (1 - eased)));
+
+      if (t < 1) {
+        glideFrame = requestAnimationFrame(step);
+      } else {
+        stopGlide();
+      }
+    }
+
+    glideFrame = requestAnimationFrame(step);
+  }
+
   if (toTop) {
     toTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+      // Restart the button's launch animation on repeat clicks. Skipped
+      // under reduced motion, where the animation is disabled and so
+      // `animationend` would never fire to clear the class again.
+      if (!reduceMotion) {
+        toTop.classList.remove("is-launching");
+        void toTop.offsetWidth;
+        toTop.classList.add("is-launching");
+      }
+
+      glideToTop();
+    });
+
+    toTop.addEventListener("animationend", function (e) {
+      if (e.target === toTop) toTop.classList.remove("is-launching");
     });
   }
+
+  // Let the visitor take the wheel mid-glide.
+  ["wheel", "touchstart", "keydown"].forEach(function (type) {
+    window.addEventListener(type, stopGlide, { passive: true });
+  });
 
   /* ---------------------------------------------------------
      Scroll reveals
