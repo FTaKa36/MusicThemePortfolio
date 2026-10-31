@@ -414,4 +414,175 @@
       });
     }
   }
+
+  /* ---------------------------------------------------------
+     Background music + vinyl play/pause
+     Browsers block sound until a user gesture, so playback is
+     attempted on load and retried on the first interaction.
+     Clicking the vinyl toggles play/pause.
+     --------------------------------------------------------- */
+  const bgMusic = document.getElementById("bgMusic");
+  const vinylBtn = document.getElementById("vinyl");
+  const deckEl = document.querySelector(".hero__deck");
+
+  if (bgMusic && vinylBtn) {
+    bgMusic.volume = 0.6;
+
+    function setPlayingUI(isPlaying) {
+      vinylBtn.setAttribute("aria-pressed", String(isPlaying));
+      vinylBtn.setAttribute("aria-label", isPlaying ? "Pause music" : "Play music");
+      vinylBtn.title = isPlaying ? "Pause music" : "Play music";
+      if (deckEl) deckEl.classList.toggle("is-paused", !isPlaying);
+    }
+
+    function playMusic() {
+      const p = bgMusic.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(function () { /* blocked until a user gesture; retried below */ });
+      }
+      return p;
+    }
+
+    bgMusic.addEventListener("play", function () { setPlayingUI(true); });
+    bgMusic.addEventListener("pause", function () { setPlayingUI(false); });
+    setPlayingUI(false);
+
+    vinylBtn.addEventListener("click", function () {
+      if (bgMusic.paused) playMusic();
+      else bgMusic.pause();
+    });
+
+    // Music is started by startMusicAfterSplash() once the splash has finished.
+  }
+
+  /* Starts the background music after the splash. If the browser blocks
+     sound without a gesture, it starts on the first interaction instead
+     (the vinyl's own click is handled separately). */
+  function startMusicAfterSplash() {
+    if (!bgMusic) return;
+    const p = bgMusic.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(function () {
+        const events = ["pointerdown", "keydown", "touchstart"];
+        function onGesture(e) {
+          if (e.target && e.target.closest && e.target.closest("#vinyl")) return;
+          const q = bgMusic.play();
+          if (q && typeof q.then === "function") {
+            q.then(function () {
+              events.forEach(function (t) { document.removeEventListener(t, onGesture, true); });
+            }).catch(function () { /* still blocked; keep listening */ });
+          }
+        }
+        events.forEach(function (t) { document.addEventListener(t, onGesture, true); });
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------
+     Splash screen
+     Its Enter button is a user gesture, so playback is allowed
+     there and the music starts as the site opens.
+     --------------------------------------------------------- */
+  const splash = document.getElementById("splash");
+
+  function hideSplash() {
+    root.classList.remove("is-splash");
+    if (splash) {
+      splash.classList.add("is-hidden");
+      splash.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  /* Flies a copy of the splash disc into the hero vinyl's position,
+     so the record appears to travel from the splash into the page. */
+  /* Total rotation (deg) of an element including its animated ancestors,
+     so the copy can match the spinning record's exact orientation. */
+  function totalAngle(el) {
+    let deg = 0;
+    for (let node = el; node && node.nodeType === 1; node = node.parentElement) {
+      const t = getComputedStyle(node).transform;
+      if (t && t !== "none") {
+        const m = new DOMMatrixReadOnly(t);
+        deg += Math.atan2(m.b, m.a) * 180 / Math.PI;
+      }
+    }
+    return deg;
+  }
+
+  function wrapDeg(d) {
+    d = ((d % 360) + 360) % 360;
+    return d > 180 ? d - 360 : d;
+  }
+
+  /* Flies a copy of the splash vinyl into the hero vinyl. Each frame the
+     copy reads the hero vinyl's live position, size and rotation, so it
+     lands exactly where the real record is spinning. */
+  function flyVinylToHero() {
+    const vinyl = document.getElementById("vinyl");
+    const source = document.getElementById("splashVinyl");
+    if (!vinyl || !source) return;
+
+    const s0 = source.getBoundingClientRect();
+    const startCx = s0.left + s0.width / 2;
+    const startCy = s0.top + s0.height / 2;
+    const startSize = s0.width;
+    const startAngle = totalAngle(source);
+
+    const fly = document.createElement("div");
+    fly.className = "vinyl splash-fly";
+    fly.setAttribute("aria-hidden", "true");
+    fly.innerHTML = vinyl.innerHTML;
+    fly.style.animation = "none";
+    document.body.appendChild(fly);
+
+    // Show only the travelling copy; the real records take over on landing.
+    source.style.visibility = "hidden";
+    vinyl.style.visibility = "hidden";
+
+    const DUR = 1400;
+    const t0 = performance.now();
+
+    function frame(now) {
+      const t = Math.min(1, (now - t0) / DUR);
+      const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const r = vinyl.getBoundingClientRect();
+      const tCx = r.left + r.width / 2;
+      const tCy = r.top + r.height / 2;
+      const tSize = vinyl.offsetWidth;
+      const delta = wrapDeg(totalAngle(vinyl) - startAngle);
+
+      const size = startSize + (tSize - startSize) * e;
+      const cx = startCx + (tCx - startCx) * e;
+      const cy = startCy + (tCy - startCy) * e;
+
+      fly.style.width = size + "px";
+      fly.style.height = size + "px";
+      fly.style.left = (cx - size / 2) + "px";
+      fly.style.top = (cy - size / 2) + "px";
+      fly.style.transform = "rotate(" + (startAngle + delta * e) + "deg)";
+
+      if (t < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        fly.remove();
+        vinyl.style.visibility = "";
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  if (splash) {
+    // Intro runs automatically, then the vinyl flies into the hero and the page appears.
+    const SPLASH_MS = reduceMotion ? 0 : 2600;
+    setTimeout(function () {
+      if (!reduceMotion) flyVinylToHero();
+      hideSplash();
+      startMusicAfterSplash();
+    }, SPLASH_MS);
+  } else {
+    root.classList.remove("is-splash");
+    startMusicAfterSplash();
+  }
 })();

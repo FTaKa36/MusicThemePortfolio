@@ -483,6 +483,28 @@ html[data-theme="light"] .vinyl {
   background: repeating-radial-gradient(circle at 50% 50%,
       #2b1d14 0 2px, #1a110a 2px 5px, #251811 5px 8px);
 }
+/* Vinyl as a button: reset native button chrome, keep the same look */
+.vinyl {
+  border: 0; padding: 0; margin: 0; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.vinyl:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.vinyl::before {
+  /* subtle hint of the play/pause action on hover */
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(0, 0, 0, 0.0);
+  transition: background-color 0.3s var(--ease);
+  pointer-events: none; z-index: 1;
+}
+.vinyl:hover::before { background: rgba(255, 255, 255, 0.04); }
+
+/* Paused state: stop the record, the glint, the tonearm sway and the equalizer */
+.hero__deck.is-paused .vinyl,
+.hero__deck.is-paused .vinyl::after,
+.hero__deck.is-paused .nowplaying__eq i {
+  animation-play-state: paused;
+}
+
 .vinyl__grooves {
   position: absolute; inset: 6%; border-radius: 50%;
   background: conic-gradient(from 0deg,
@@ -504,7 +526,7 @@ html[data-theme="light"] .vinyl {
   translate: -50% -50%; border-radius: 50%; background: var(--bg);
 }
 
-.tonearm { position: absolute; top: 6%; right: 4%; width: 42%; height: 42%; z-index: 2; }
+.tonearm { position: absolute; top: 6%; right: 4%; width: 42%; height: 42%; z-index: 2; pointer-events: none; }
 .tonearm__pivot {
   position: absolute; top: 0; right: 0; width: 22px; height: 22px; border-radius: 50%;
   background: linear-gradient(145deg, #efe1cd, #b9a488);
@@ -875,6 +897,50 @@ html[data-theme="light"] .cassette__shell {
   45%  { transform: translateY(-14px); opacity: 0; }
   55%  { transform: translateY(14px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- Splash screen ---------- */
+html.is-splash, html.is-splash body { overflow: hidden; }
+.splash {
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  background: var(--bg);
+  transition: opacity 0.8s var(--ease), visibility 0.8s;
+}
+.splash { transition: opacity 0.9s var(--ease), visibility 0.9s; }
+.splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* Travelling copy of the vinyl, animated from the splash disc to the hero deck */
+.vinyl.splash-fly {
+  position: fixed; z-index: 1001; margin: 0;
+  top: 0; left: 0; translate: none;
+  pointer-events: none; transform-origin: 50% 50%;
+}
+.splash__inner {
+  display: grid; justify-items: center; gap: 14px;
+  padding: 24px; text-align: center;
+}
+.splash__disc {
+  position: relative; display: block;
+  width: clamp(160px, 36vw, 220px); aspect-ratio: 1;
+  animation: splashFadeIn 1.4s var(--ease) both;
+}
+.splash__disc .vinyl {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  top: 0; left: 0; translate: none; margin: 0;
+}
+.splash__title {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  letter-spacing: -0.02em; line-height: 1.1;
+  animation: splashFadeIn 1.4s var(--ease) 0.5s both;
+}
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .splash { transition: none; }
+  .splash__disc, .splash__title, .splash__disc svg { animation: none; }
 }
 
 /* ---------- Reveal animation ---------- */
