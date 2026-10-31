@@ -29,7 +29,7 @@
       themeToggle.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
     }
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f7f1ef" : "#14100f");
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f5f0e6" : "#0f0c0b");
   }
 
   (function initTheme() {
@@ -82,10 +82,9 @@
   }
 
   /* ---------------------------------------------------------
-     Header state + scroll progress + back-to-top
+     Header state + back-to-top
      --------------------------------------------------------- */
   const header = document.getElementById("siteHeader");
-  const scrollBar = document.getElementById("scrollBar");
   const toTop = document.getElementById("toTop");
   let ticking = false;
 
@@ -93,13 +92,6 @@
     const y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("is-stuck", y > 12);
     if (toTop) toTop.classList.toggle("is-on", y > 520);
-
-    if (scrollBar) {
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const pct = max > 0 ? Math.min(100, (y / max) * 100) : 0;
-      scrollBar.style.width = pct + "%";
-    }
     ticking = false;
   }
 
@@ -254,40 +246,6 @@
   }
 
   /* ---------------------------------------------------------
-     Cursor glow
-     --------------------------------------------------------- */
-  const glow = document.getElementById("cursorGlow");
-  if (glow && window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
-    let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
-    let cx = gx, cy = gy;
-
-    window.addEventListener("pointermove", function (e) {
-      gx = e.clientX; gy = e.clientY;
-      glow.classList.add("is-on");
-    }, { passive: true });
-
-    document.addEventListener("mouseleave", function () { glow.classList.remove("is-on"); });
-
-    (function loop() {
-      cx += (gx - cx) * 0.12;
-      cy += (gy - cy) * 0.12;
-      glow.style.transform = "translate3d(" + cx + "px," + cy + "px,0)";
-      requestAnimationFrame(loop);
-    })();
-  }
-
-  /* ---------------------------------------------------------
-     Pointer-tracked glow inside skill cards
-     --------------------------------------------------------- */
-  document.querySelectorAll(".skill-card").forEach(function (card) {
-    card.addEventListener("pointermove", function (e) {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty("--mx", (e.clientX - rect.left) + "px");
-      card.style.setProperty("--my", (e.clientY - rect.top) + "px");
-    });
-  });
-
-  /* ---------------------------------------------------------
      Contact form → direct send (no mail app needed)
 
      The form submits straight to a form-to-email relay, which
@@ -397,25 +355,6 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* ---------------------------------------------------------
-     Subtle parallax on the vinyl deck
-     --------------------------------------------------------- */
-  const deck = document.querySelector(".hero__deck");
-  if (deck && !reduceMotion && window.matchMedia("(hover: hover)").matches) {
-    const hero = document.querySelector(".hero");
-    if (hero) {
-      hero.addEventListener("pointermove", function (e) {
-        const r = hero.getBoundingClientRect();
-        const dx = (e.clientX - r.left) / r.width - 0.5;
-        const dy = (e.clientY - r.top) / r.height - 0.5;
-        deck.style.transform = "translate3d(" + (dx * 14) + "px," + (dy * 14) + "px,0)";
-      });
-      hero.addEventListener("pointerleave", function () {
-        deck.style.transform = "";
-      });
-    }
-  }
-
-  /* ---------------------------------------------------------
      Background music + vinyl play/pause
      Browsers block sound until a user gesture, so playback is
      attempted on load and retried on the first interaction.
@@ -518,8 +457,8 @@
 
   /* ---------------------------------------------------------
      Splash screen
-     Its Enter button is a user gesture, so playback is allowed
-     there and the music starts as the site opens.
+     Plays its short intro, then hands the record over to the
+     hero deck and reveals the page.
      --------------------------------------------------------- */
   const splash = document.getElementById("splash");
 
@@ -531,8 +470,6 @@
     }
   }
 
-  /* Flies a copy of the splash disc into the hero vinyl's position,
-     so the record appears to travel from the splash into the page. */
   /* Total rotation (deg) of an element including its animated ancestors,
      so the copy can match the spinning record's exact orientation. */
   function totalAngle(el) {
@@ -579,6 +516,14 @@
 
     const DUR = 1400;
     const t0 = performance.now();
+    let finished = false;
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      fly.remove();
+      vinyl.style.visibility = "";
+    }
 
     function frame(now) {
       const t = Math.min(1, (now - t0) / DUR);
@@ -603,12 +548,14 @@
       if (t < 1) {
         requestAnimationFrame(frame);
       } else {
-        fly.remove();
-        vinyl.style.visibility = "";
+        finish();
       }
     }
 
     requestAnimationFrame(frame);
+    // Safety net: if frames stall (hidden tab, reduced refresh), the hero
+    // record must never stay hidden.
+    setTimeout(finish, DUR + 600);
   }
 
   if (splash) {
