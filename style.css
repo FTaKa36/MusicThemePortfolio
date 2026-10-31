@@ -97,6 +97,20 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, p { margin: 0; }
 ::selection { background: var(--accent); color: var(--on-accent); }
 
+/* ---------- Scrollbar (themed) ---------- */
+/* Firefox only: modern Chromium would let scrollbar-color override the styled one below. */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-width: thin; scrollbar-color: var(--accent-2) var(--bg-2); }
+}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--bg-2); border-left: 1px solid var(--line); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-soft), var(--accent));
+  border: 3px solid var(--bg-2);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent), var(--accent-2)); }
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
