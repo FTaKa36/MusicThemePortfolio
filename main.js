@@ -424,6 +424,18 @@
   const bgMusic = document.getElementById("bgMusic");
   const vinylBtn = document.getElementById("vinyl");
   const deckEl = document.querySelector(".hero__deck");
+  const musicHint = document.getElementById("musicHint");
+  let musicStarted = false;
+  let splashDone = false;
+
+  function showMusicHint() {
+    if (!musicHint || musicStarted) return;
+    musicHint.classList.add("is-on");
+  }
+
+  function hideMusicHint() {
+    if (musicHint) musicHint.classList.remove("is-on");
+  }
 
   if (bgMusic && vinylBtn) {
     bgMusic.volume = 0.6;
@@ -443,7 +455,11 @@
       return p;
     }
 
-    bgMusic.addEventListener("play", function () { setPlayingUI(true); });
+    bgMusic.addEventListener("play", function () {
+      musicStarted = true;
+      setPlayingUI(true);
+      hideMusicHint();
+    });
     bgMusic.addEventListener("pause", function () { setPlayingUI(false); });
     setPlayingUI(false);
 
@@ -452,29 +468,51 @@
       else bgMusic.pause();
     });
 
-    // Music is started by startMusicAfterSplash() once the splash has finished.
+    /* Browsers only allow sound after a user gesture. This listens from the
+       very first moment (even during the splash) and starts the music on any
+       click, tap, or keypress. It unhooks itself once the music is playing. */
+    (function armFirstGesture() {
+      const events = ["pointerdown", "keydown", "touchend"];
+
+      function disarm() {
+        events.forEach(function (t) {
+          document.removeEventListener(t, onGesture, true);
+        });
+      }
+
+      function onGesture(e) {
+        if (e.target && e.target.closest && e.target.closest("#vinyl")) return;
+        // Sound only starts once the splash is out of the way; a gesture
+        // before then still counts, so playback is allowed right after.
+        if (!splashDone) return;
+        if (!bgMusic.paused) { disarm(); return; }
+        const p = bgMusic.play();
+        if (p && typeof p.then === "function") {
+          p.then(disarm).catch(function () { /* still blocked; keep listening */ });
+        }
+      }
+
+      events.forEach(function (t) {
+        document.addEventListener(t, onGesture, true);
+      });
+
+      bgMusic.addEventListener("play", disarm, { once: true });
+    })();
+
+    if (musicHint) {
+      musicHint.addEventListener("click", function () {
+        playMusic();
+      });
+    }
   }
 
-  /* Starts the background music after the splash. If the browser blocks
-     sound without a gesture, it starts on the first interaction instead
-     (the vinyl's own click is handled separately). */
+  /* Tries to start the music right after the splash. If the browser blocks
+     it, the hint pill stays up until the visitor interacts. */
   function startMusicAfterSplash() {
     if (!bgMusic) return;
     const p = bgMusic.play();
     if (p && typeof p.catch === "function") {
-      p.catch(function () {
-        const events = ["pointerdown", "keydown", "touchstart"];
-        function onGesture(e) {
-          if (e.target && e.target.closest && e.target.closest("#vinyl")) return;
-          const q = bgMusic.play();
-          if (q && typeof q.then === "function") {
-            q.then(function () {
-              events.forEach(function (t) { document.removeEventListener(t, onGesture, true); });
-            }).catch(function () { /* still blocked; keep listening */ });
-          }
-        }
-        events.forEach(function (t) { document.addEventListener(t, onGesture, true); });
-      });
+      p.catch(function () { showMusicHint(); });
     }
   }
 
@@ -579,10 +617,12 @@
     setTimeout(function () {
       if (!reduceMotion) flyVinylToHero();
       hideSplash();
+      splashDone = true;
       startMusicAfterSplash();
     }, SPLASH_MS);
   } else {
     root.classList.remove("is-splash");
+    splashDone = true;
     startMusicAfterSplash();
   }
 })();
