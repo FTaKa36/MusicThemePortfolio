@@ -788,6 +788,9 @@ html[data-theme="light"] .cassette__shell {
 .link-card__arrow { margin-left: auto; width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s var(--ease), transform 0.3s var(--ease); }
 .link-card:hover .link-card__arrow { stroke: var(--accent); transform: translate(2px, -2px); }
 
+.shoutout_link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 500; color: white; transition: color 0.3s var(--ease); }
+.shoutout_link:hover { color: var(--accent); }
+
 /* ---------- Contact ---------- */
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 5vw, 72px); align-items: start; }
 .contact__intro { min-width: 0; }
