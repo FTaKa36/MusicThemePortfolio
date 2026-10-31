@@ -12,6 +12,9 @@
   <meta property="og:title" content="FaathirTaKa (TK) — Multi-Disciplinary Developer" />
   <meta property="og:description" content="Web, Flutter mobile, and game development by Faathir Kuspratama Pasha (FaathirTaKa / TaKa / Pasha / TK)." />
   <meta property="og:image" content="https://avatars.githubusercontent.com/FTaKa36" />
+  <meta property="og:url" content="https://faathirkp-tech.vercel.app/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://faathirkp-tech.vercel.app/" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -402,7 +405,7 @@
               <p>A campus-project mobile app for saving your favourite songs. Needs a hosting backend — local or paid — to run. Shipped with no further feature updates planned.</p>
               <ul class="tags tags--sm"><li>Flutter</li><li>Dart</li><li>Mobile</li><li>Campus project</li></ul>
             </div>
-            <a class="setlist__link" href="https://github.com/FTaKa36/ProjectWebsiteQGIS" target="_blank" rel="noopener noreferrer">
+            <a class="setlist__link" href="https://github.com/FTaKa36/SongDataBase_Flutter" target="_blank" rel="noopener noreferrer">
               View repo
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
@@ -412,7 +415,7 @@
             <span class="setlist__no">08</span>
             <div class="setlist__body">
               <h3>Personal Cat Detector <span class="pill pill--live">Released</span></h3> 
-              <p>A cat detector project that currently can only detect race, this is my friend project(shoutout to <a class="shoutout_link" href="https://github.com/chameleon54">chame</a>) I helped him as an UI/UX website. In the future we will add new feature.</p>
+              <p>A cat detector project that can currently only detect breed. This is my friend's project (shoutout to <a class="shoutout_link" href="https://github.com/chameleon54">chame</a>). I helped him as the UI/UX designer for the website. In the future we will add new features.</p>
               <ul class="tags tags--sm"><li>Teamwork</li><li>Machine Learning</li><li>Website</li><li>UI/UX</li><li>HTML</li><li>CSS</li><li>JS</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/chameleon54/personal-cat-detector" target="_blank" rel="noopener noreferrer">
@@ -565,11 +568,11 @@
         <form class="contact__form reveal" id="contactForm" novalidate>
           <div class="field">
             <label for="cf-name">Your name</label>
-            <input id="cf-name" name="name" type="text" required placeholder="Jane Doe" autocomplete="name" />
+            <input id="cf-name" name="name" type="text" required maxlength="100" placeholder="Jane Doe" autocomplete="name" />
           </div>
           <div class="field">
             <label for="cf-email">Email</label>
-            <input id="cf-email" name="email" type="email" required placeholder="jane@example.com" autocomplete="email" />
+            <input id="cf-email" name="email" type="email" required maxlength="100" placeholder="jane@example.com" autocomplete="email" />
           </div>
           <div class="field">
             <label for="cf-topic">What's it about?</label>
@@ -583,8 +586,9 @@
           </div>
           <div class="field">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required placeholder="A quick note about the project, timeline, and budget range..."></textarea>
+            <textarea id="cf-message" name="message" rows="5" required maxlength="2000" placeholder="A quick note about the project, timeline, and budget range..."></textarea>
           </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
           <button class="btn btn--primary btn--full" type="submit">
             <span>Send the demo</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
