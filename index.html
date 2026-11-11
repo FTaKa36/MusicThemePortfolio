@@ -89,12 +89,8 @@
 
       <div class="nav__actions">
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
-          <span class="theme-toggle__track">
-            <span class="theme-toggle__thumb">
-              <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M4.6 12H2.2M21.8 12h-2.4M6.3 6.3 4.6 4.6M19.4 19.4l-1.7-1.7M17.7 6.3l1.7-1.7M4.6 19.4l1.7-1.7"/></svg>
-              <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z"/></svg>
-            </span>
-          </span>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M4.6 12H2.2M21.8 12h-2.4M6.3 6.3 4.6 4.6M19.4 19.4l-1.7-1.7M17.7 6.3l1.7-1.7M4.6 19.4l1.7-1.7"/></svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.7 8.7 0 1 0 10.9 10.9Z"/></svg>
         </button>
         <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span>
@@ -108,24 +104,21 @@
     <section class="hero" id="top">
       <div class="wrap hero__grid">
         <div class="hero__copy">
-          <p class="eyebrow reveal">
-            <span class="eyebrow__dot" aria-hidden="true"></span>
-            Available for freelance &amp; collabs
-          </p>
+          <p class="eyebrow reveal">Available for freelance &amp; collabs</p>
 
           <h1 class="hero__title">
-            <span class="reveal">I build things</span>
-            <span class="reveal">that <em>sound</em> as good</span>
-            <span class="reveal">as they <span class="hero__accent">look</span>.</span>
+            <span class="reveal"> <em>Websites</em>, <em>apps</em>,</span>
+            <span class="reveal">and <em>games</em> built</span>
+            <span class="reveal">to be used.</span>
           </h1>
 
           <p class="hero__lede reveal">
-            Hey, I'm <strong>Faathir Kuspratama Pasha</strong> — known as
-            <strong>FaathirTaKa</strong>, <strong>TaKa</strong>, <strong>Pasha</strong>, or
+            Hey, I'm <strong>Hieronimus Faathir Kuspratama Pasha</strong> — known as
+            <strong>Faathir</strong> <strong>FaathirTaKa</strong>, <strong>TaKa</strong>, <strong>Pasha</strong>, <strong>FTK</strong> or
             <strong>TK</strong>. A multi-disciplinary developer working across
             <strong>websites</strong>, <strong>Flutter Android apps</strong>, and
-            <strong>game</strong>. I like interfaces with a sense of rhythm and
-            code that feels hand-played rather than machine-stamped.
+            <strong>games</strong>. I care about clear structure, readable code,
+            and interfaces that stay out of the way.
           </p>
 
           <div class="hero__cta reveal">
@@ -154,8 +147,6 @@
 
         <!-- Now Playing / vinyl turntable -->
         <div class="hero__deck reveal">
-          <div class="deck__glow"></div>
-
           <div class="turntable">
             <svg class="turntable__ring" viewBox="0 0 200 200" role="presentation">
               <defs>
@@ -163,7 +154,7 @@
               </defs>
               <text class="turntable__ringtext">
                 <textPath href="#ringPath" startOffset="0%">
-                  WEB DEV · FLUTTER · GAME DEV · UI/UX · GIT · TAKA ·                </textPath>
+                  WEB DEV · FLUTTER · GAME DEV · UI/UX · GIT · TAKA · </textPath>
               </text>
             </svg>
 
@@ -187,26 +178,21 @@
               <i></i><i></i><i></i><i></i><i></i>
             </div>
             <div class="nowplaying__meta">
-              <span class="nowplaying__tag">Now building</span>
-              <p class="nowplaying__title">Portfolio — Side A</p>
-              <p class="nowplaying__sub">FaathirTaKa · multi-disciplinary dev</p>
+              <span class="nowplaying__tag">Side A · Track 01</span>
+              <p class="nowplaying__title">Cublak-Cublak Suweng — Drill</p>
+              <p class="nowplaying__sub">Background audio · click the record to pause</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="hero__marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <span>WEBSITE DEVELOPMENT</span><span class="sep">◆</span>
-          <span>FLUTTER ANDROID</span><span class="sep">◆</span>
-          <span>GAME DEVELOPMENT</span><span class="sep">◆</span>
-          <span>UI / UX DESIGN</span><span class="sep">◆</span>
-          <span>GIT &amp; WORKFLOW</span><span class="sep">◆</span>
-          <span>WEBSITE DEVELOPMENT</span><span class="sep">◆</span>
-          <span>FLUTTER ANDROID</span><span class="sep">◆</span>
-          <span>GAME DEVELOPMENT</span><span class="sep">◆</span>
-          <span>UI / UX DESIGN</span><span class="sep">◆</span>
-          <span>GIT &amp; WORKFLOW</span><span class="sep">◆</span>
+      <div class="wrap">
+        <div class="hero__strip">
+          <span>Website development</span>
+          <span>Flutter Android</span>
+          <span>Game development</span>
+          <span>UI / UX design</span>
+          <span>Git &amp; workflow</span>
         </div>
       </div>
     </section>
@@ -215,11 +201,11 @@
     <section class="section" id="skills">
       <div class="wrap">
         <header class="section__head">
-          <p class="kicker reveal"><span>01</span> The Mix</p>
-          <h2 class="section__title reveal">Every skill is a <em>track</em> in the set</h2>
+          <p class="kicker reveal"><span>01</span> Skills</p>
+          <h2 class="section__title reveal">What I <em>work</em> with</h2>
           <p class="section__lede reveal">
-            Five disciplines, one workflow. Here's what I bring to the booth — from pixel-perfect
-            layouts to playable worlds.
+            Five disciplines, one workflow: from layout and interaction to shipping
+            a working build.
           </p>
         </header>
 
@@ -238,9 +224,9 @@
               full-stack apps built with semantic HTML, modern CSS, and clean JavaScript.
             </p>
             <ul class="tags">
-              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li><li>Node.js</li><li>REST APIs</li>
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Laravel</li><li>REST APIs</li>
             </ul>
-            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="skill-card__rule" aria-hidden="true"></div>
           </article>
 
           <!-- 2 -->
@@ -254,12 +240,12 @@
             <h3>Mobile · Flutter</h3>
             <p>
               Android apps built with Flutter and Dart — pure Flutter/Dart, no Android Studio.
-              Smooth 60fps animation, offline-first state, and interfaces that feel native.
+              Smooth animation, offline-first state, and interfaces that feel native.
             </p>
             <ul class="tags">
-              <li>Flutter</li><li>Dart</li><li>Android</li><li>Riverpod</li><li>Firebase</li><li>Material 3</li>
+              <li>Flutter</li><li>Dart</li><li>Android</li>
             </ul>
-            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="skill-card__rule" aria-hidden="true"></div>
           </article>
 
           <!-- 3 -->
@@ -273,13 +259,13 @@
             <h3>Game Development</h3>
             <p>
               Building 2D visual novels with GDevelop 5 — branching stories, dialogue systems,
-              and level flow. Currently learning Unity to take the next step into 3D and
+              and level flow. Currently learning Unity and Godot to take the next step into 3D and
               deeper gameplay work.
             </p>
             <ul class="tags">
-              <li>GDevelop 5</li><li>Visual Novel</li><li>2D</li><li>Learning Unity</li><li>Game Design</li>
+              <li>GDevelop 5</li><li>Visual Novel</li><li>2D</li><li>Learning Unity</li><li>Learning Godot</li><li>Game Design</li>
             </ul>
-            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="skill-card__rule" aria-hidden="true"></div>
           </article>
 
           <!-- 4 -->
@@ -298,7 +284,7 @@
             <ul class="tags">
               <li>Figma</li><li>Design Systems</li><li>Prototyping</li><li>Typography</li><li>Motion</li><li>Accessibility</li>
             </ul>
-            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="skill-card__rule" aria-hidden="true"></div>
           </article>
 
           <!-- 5 -->
@@ -317,7 +303,7 @@
             <ul class="tags">
               <li>Git</li><li>GitHub</li><li>VS Code</li><li>Vercel</li><li>Windows</li><li>Android</li>
             </ul>
-            <div class="skill-card__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="skill-card__rule" aria-hidden="true"></div>
           </article>
         </div>
       </div>
@@ -327,8 +313,8 @@
     <section class="section section--alt" id="work">
       <div class="wrap">
         <header class="section__head">
-          <p class="kicker reveal"><span>02</span> The Setlist</p>
-          <h2 class="section__title reveal">Selected <em>tracks</em></h2>
+          <p class="kicker reveal"><span>02</span> Projects</p>
+          <h2 class="section__title reveal">Selected <em>experience</em></h2>
           <p class="section__lede reveal">
             Everything below is my real project list — what's shipped and done, and what's
             still in development. Each row shows its current status.
@@ -340,7 +326,7 @@
             <span class="setlist__no">01</span>
             <div class="setlist__body">
               <h3>Personal Portfolio <span class="pill pill--live">Live</span></h3>
-              <p>The site you're looking at — a warm cherry theme system, motion, and a hand-built visual layer.</p>
+              <p>The site you're looking at: a static build with no framework, a theme system, and a custom audio player.</p>
               <ul class="tags tags--sm"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/MusicThemePortfolio" target="_blank" rel="noopener noreferrer">
@@ -391,7 +377,7 @@
           <li class="setlist__item reveal" style="--i:4">
             <span class="setlist__no">05</span>
             <div class="setlist__body">
-              <h3>MusiCollector <span class="pill pill--live">Released</span></h3>
+              <h3>MusiCollector <span class="pill">Unreleased</span></h3>
               <p>Save your favourite tracks in one place. Drop a YouTube, Spotify, or other link and the song is stored in browser cache — playback sometimes works, sometimes not, so some features may still be rough. Updates are possible.</p>
               <ul class="tags tags--sm"><li>Web</li><li>Music</li><li>LocalStorage</li></ul>
             </div>
@@ -404,7 +390,7 @@
           <li class="setlist__item reveal" style="--i:5">
             <span class="setlist__no">06</span>
             <div class="setlist__body">
-              <h3>Website QGIS <span class="pill pill--live">Released</span></h3>
+              <h3>Website QGIS <span class="pill">Unreleased</span></h3>
               <p>A campus project, shipped as-is with no further feature updates planned.</p>
               <ul class="tags tags--sm"><li>Web</li><li>QGIS</li><li>Campus project</li></ul>
             </div>
@@ -417,7 +403,7 @@
           <li class="setlist__item reveal" style="--i:6">
             <span class="setlist__no">07</span>
             <div class="setlist__body">
-              <h3>SongDatabase Flutter <span class="pill pill--live">Released</span></h3>
+              <h3>SongDatabase Flutter <span class="pill">Unreleased</span></h3>
               <p>A campus-project mobile app for saving your favourite songs. Needs a hosting backend — local or paid — to run. Shipped with no further feature updates planned.</p>
               <ul class="tags tags--sm"><li>Flutter</li><li>Dart</li><li>Mobile</li><li>Campus project</li></ul>
             </div>
@@ -430,12 +416,25 @@
             <li class="setlist__item reveal" style="--i:7">
             <span class="setlist__no">08</span>
             <div class="setlist__body">
-              <h3>Personal Cat Detector <span class="pill pill--live">Released</span></h3> 
+              <h3>Personal Cat Detector <span class="pill">Under development</span></h3> 
               <p>A cat detector project that currently can only detect race, this is my friend project(shoutout to <a class="shoutout_link" href="https://github.com/chameleon54" target="_blank" rel="noopener noreferrer">chame</a>) I helped him as an UI/UX website. In the future we will add new feature.</p>
               <ul class="tags tags--sm"><li>Teamwork</li><li>Machine Learning</li><li>Website</li><li>UI/UX</li><li>HTML</li><li>CSS</li><li>JS</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/chameleon54/personal-cat-detector" target="_blank" rel="noopener noreferrer">
               View repo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </li>
+
+            <li class="setlist__item reveal" style="--i:8">
+            <span class="setlist__no">09</span>
+            <div class="setlist__body">
+              <h3>SMA Laboratorium UPGRIS Website <span class="pill pill--live">Released</span></h3> 
+              <p>A website that introduce SMA Laboratorium UPGRIS, I worked the website as a fullstack using laravel.</p>
+              <ul class="tags tags--sm"><li>Fullstack</li><li>Data Input</li><li>Website</li><li>UI/UX</li><li>HTML</li><li>CSS</li><li>JS</li><li>Laravel</li></ul>
+            </div>
+            <a class="setlist__link" href="https://smalaboratoriumupgris.sch.id" target="_blank" rel="noopener noreferrer">
+              View website
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
           </li>
@@ -469,14 +468,13 @@
                 </div>
                 <div class="cassette__strip"></div>
               </div>
-              <div class="cassette__screws"><i></i><i></i><i></i><i></i></div>
             </div>
           </div>
         </div>
 
         <div class="about__copy">
-          <p class="kicker reveal"><span>03</span> Liner Notes</p>
-          <h2 class="section__title reveal">A developer with a <em>favorite preset</em></h2>
+          <p class="kicker reveal"><span>03</span> About</p>
+          <h2 class="section__title reveal">Developer, <em>designer</em>, player</h2>
           <p class="reveal">
             I'm <strong>Faathir Kuspratama Pasha</strong> — <strong>FaathirTaKa</strong>,
             <strong>TaKa</strong>, <strong>Pasha</strong>, or just <strong>TK</strong>. I got into
@@ -510,9 +508,9 @@
     <section class="section section--alt" id="playlist">
       <div class="wrap">
         <header class="section__head">
-          <p class="kicker reveal"><span>04</span> The Playlist</p>
-          <h2 class="section__title reveal">Find me on every <em>channel</em></h2>
-          <p class="section__lede reveal">Same person, different stages. Pick your platform.</p>
+          <p class="kicker reveal"><span>04</span> Links</p>
+          <h2 class="section__title reveal">Find me <em>online</em></h2>
+          <p class="section__lede reveal">Same work, different platforms.</p>
         </header>
 
         <div class="links">
@@ -567,11 +565,10 @@
     <section class="section" id="contact">
       <div class="wrap contact">
         <div class="contact__intro">
-          <p class="kicker reveal"><span>05</span> Encore</p>
-          <h2 class="section__title reveal">Got a track that needs <em>finishing</em>?</h2>
+          <p class="kicker reveal"><span>05</span> Contact</p>
+          <h2 class="section__title reveal">Have a project in <em>mind</em>?</h2>
           <p class="section__lede reveal">
-            Tell me what you're building. Whether it's a landing page, a Flutter app, or a game
-            — I'd love to hear it.
+            Tell me what you're building: a landing page, a Flutter app, or a game.
           </p>
 
           <ul class="contact__points">
@@ -626,7 +623,7 @@
             <circle cx="20" cy="20" r="1.8" class="disc-hole" />
           </svg>
         </span>
-        <p>FaathirTaKa — built with warm cherry tones, cheap coffee, and a steady 4/4.</p>
+        <p>FaathirTaKa. Built by hand, without a template.</p>
       </div>
 
       <nav class="footer__nav" aria-label="Footer">
@@ -639,16 +636,25 @@
 
       <div class="footer__meta">
         <span>&copy; <span id="year">2026</span> Faathir Kuspratama Pasha</span>
-        <span>Hand-coded, no template.</span>
+        <span>Static HTML, CSS, and JavaScript.</span>
+        <span>Background music: <a class="shoutout_link" href="https://www.youtube.com/watch?v=3g1j0k5J6xM" target="_blank" rel="noopener noreferrer">Cublak-Cublak Suweng — Drill</a></span>
+        <span>I do not have copyright for the background music.</span>
+        <span>Icons: <a class="shoutout_link" href="https://iconmonstr.com/" target="_blank" rel="noopener noreferrer">iconmonstr</a></span>
+        <span>Fonts: <a class="shoutout_link" href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noopener noreferrer">JetBrains Mono</a></span>
       </div>
     </div>
   </footer>
+
+  <button class="music-hint" id="musicHint" type="button" aria-label="Play background music">
+    <span class="music-hint__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>Play background audio</span>
+  </button>
 
   <button class="to-top" id="toTop" type="button" aria-label="Back to top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
   </button>
 
-  <!-- Background music (starts after the first visitor interaction; vinyl toggles play/pause) -->
+  <!-- Background music (starts after the splash, or on the first interaction if blocked; vinyl toggles play/pause) -->
   <audio id="bgMusic" src="cublak-cublak%20suweng%20drill.mp3" loop preload="auto"></audio>
 
   <script src="main.js" defer></script>
