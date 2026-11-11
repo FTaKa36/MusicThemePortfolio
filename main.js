@@ -29,7 +29,7 @@
       themeToggle.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
     }
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f5f0e6" : "#0f0c0b");
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f7f1ef" : "#14100f");
   }
 
   (function initTheme() {
@@ -82,9 +82,10 @@
   }
 
   /* ---------------------------------------------------------
-     Header state + back-to-top
+     Header state + scroll progress + back-to-top
      --------------------------------------------------------- */
   const header = document.getElementById("siteHeader");
+  const scrollBar = document.getElementById("scrollBar");
   const toTop = document.getElementById("toTop");
   let ticking = false;
 
@@ -92,6 +93,13 @@
     const y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("is-stuck", y > 12);
     if (toTop) toTop.classList.toggle("is-on", y > 520);
+
+    if (scrollBar) {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, (y / max) * 100) : 0;
+      scrollBar.style.width = pct + "%";
+    }
     ticking = false;
   }
 
@@ -245,7 +253,7 @@
     sections.forEach(function (s) { sio.observe(s); });
   }
 
-   /* ---------------------------------------------------------
+  /* ---------------------------------------------------------
      Cursor glow
      --------------------------------------------------------- */
   const glow = document.getElementById("cursorGlow");
@@ -392,6 +400,25 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* ---------------------------------------------------------
+     Subtle parallax on the vinyl deck
+     --------------------------------------------------------- */
+  const deck = document.querySelector(".hero__deck");
+  if (deck && !reduceMotion && window.matchMedia("(hover: hover)").matches) {
+    const hero = document.querySelector(".hero");
+    if (hero) {
+      hero.addEventListener("pointermove", function (e) {
+        const r = hero.getBoundingClientRect();
+        const dx = (e.clientX - r.left) / r.width - 0.5;
+        const dy = (e.clientY - r.top) / r.height - 0.5;
+        deck.style.transform = "translate3d(" + (dx * 14) + "px," + (dy * 14) + "px,0)";
+      });
+      hero.addEventListener("pointerleave", function () {
+        deck.style.transform = "";
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------
      Background music + vinyl play/pause
      Browsers block sound until a user gesture, so playback is
      attempted on load and retried on the first interaction.
@@ -400,18 +427,6 @@
   const bgMusic = document.getElementById("bgMusic");
   const vinylBtn = document.getElementById("vinyl");
   const deckEl = document.querySelector(".hero__deck");
-  const musicHint = document.getElementById("musicHint");
-  let musicStarted = false;
-  let splashDone = false;
-
-  function showMusicHint() {
-    if (!musicHint || musicStarted) return;
-    musicHint.classList.add("is-on");
-  }
-
-  function hideMusicHint() {
-    if (musicHint) musicHint.classList.remove("is-on");
-  }
 
   if (bgMusic && vinylBtn) {
     bgMusic.volume = 0.6;
@@ -431,11 +446,7 @@
       return p;
     }
 
-    bgMusic.addEventListener("play", function () {
-      musicStarted = true;
-      setPlayingUI(true);
-      hideMusicHint();
-    });
+    bgMusic.addEventListener("play", function () { setPlayingUI(true); });
     bgMusic.addEventListener("pause", function () { setPlayingUI(false); });
     setPlayingUI(false);
 
@@ -444,58 +455,36 @@
       else bgMusic.pause();
     });
 
-    /* Browsers only allow sound after a user gesture. This listens from the
-       very first moment (even during the splash) and starts the music on any
-       click, tap, or keypress. It unhooks itself once the music is playing. */
-    (function armFirstGesture() {
-      const events = ["pointerdown", "keydown", "touchend"];
-
-      function disarm() {
-        events.forEach(function (t) {
-          document.removeEventListener(t, onGesture, true);
-        });
-      }
-
-      function onGesture(e) {
-        if (e.target && e.target.closest && e.target.closest("#vinyl")) return;
-        // Sound only starts once the splash is out of the way; a gesture
-        // before then still counts, so playback is allowed right after.
-        if (!splashDone) return;
-        if (!bgMusic.paused) { disarm(); return; }
-        const p = bgMusic.play();
-        if (p && typeof p.then === "function") {
-          p.then(disarm).catch(function () { /* still blocked; keep listening */ });
-        }
-      }
-
-      events.forEach(function (t) {
-        document.addEventListener(t, onGesture, true);
-      });
-
-      bgMusic.addEventListener("play", disarm, { once: true });
-    })();
-
-    if (musicHint) {
-      musicHint.addEventListener("click", function () {
-        playMusic();
-      });
-    }
+    // Music is started by startMusicAfterSplash() once the splash has finished.
   }
 
-  /* Tries to start the music right after the splash. If the browser blocks
-     it, the hint pill stays up until the visitor interacts. */
+  /* Starts the background music after the splash. If the browser blocks
+     sound without a gesture, it starts on the first interaction instead
+     (the vinyl's own click is handled separately). */
   function startMusicAfterSplash() {
     if (!bgMusic) return;
     const p = bgMusic.play();
     if (p && typeof p.catch === "function") {
-      p.catch(function () { showMusicHint(); });
+      p.catch(function () {
+        const events = ["pointerdown", "keydown", "touchstart"];
+        function onGesture(e) {
+          if (e.target && e.target.closest && e.target.closest("#vinyl")) return;
+          const q = bgMusic.play();
+          if (q && typeof q.then === "function") {
+            q.then(function () {
+              events.forEach(function (t) { document.removeEventListener(t, onGesture, true); });
+            }).catch(function () { /* still blocked; keep listening */ });
+          }
+        }
+        events.forEach(function (t) { document.addEventListener(t, onGesture, true); });
+      });
     }
   }
 
   /* ---------------------------------------------------------
      Splash screen
-     Plays its short intro, then hands the record over to the
-     hero deck and reveals the page.
+     Its Enter button is a user gesture, so playback is allowed
+     there and the music starts as the site opens.
      --------------------------------------------------------- */
   const splash = document.getElementById("splash");
 
@@ -507,6 +496,8 @@
     }
   }
 
+  /* Flies a copy of the splash disc into the hero vinyl's position,
+     so the record appears to travel from the splash into the page. */
   /* Total rotation (deg) of an element including its animated ancestors,
      so the copy can match the spinning record's exact orientation. */
   function totalAngle(el) {
@@ -553,14 +544,6 @@
 
     const DUR = 1400;
     const t0 = performance.now();
-    let finished = false;
-
-    function finish() {
-      if (finished) return;
-      finished = true;
-      fly.remove();
-      vinyl.style.visibility = "";
-    }
 
     function frame(now) {
       const t = Math.min(1, (now - t0) / DUR);
@@ -585,14 +568,12 @@
       if (t < 1) {
         requestAnimationFrame(frame);
       } else {
-        finish();
+        fly.remove();
+        vinyl.style.visibility = "";
       }
     }
 
     requestAnimationFrame(frame);
-    // Safety net: if frames stall (hidden tab, reduced refresh), the hero
-    // record must never stay hidden.
-    setTimeout(finish, DUR + 600);
   }
 
   if (splash) {
@@ -601,12 +582,10 @@
     setTimeout(function () {
       if (!reduceMotion) flyVinylToHero();
       hideSplash();
-      splashDone = true;
       startMusicAfterSplash();
     }, SPLASH_MS);
   } else {
     root.classList.remove("is-splash");
-    splashDone = true;
     startMusicAfterSplash();
   }
 })();
