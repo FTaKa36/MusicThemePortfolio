@@ -245,6 +245,40 @@
     sections.forEach(function (s) { sio.observe(s); });
   }
 
+   /* ---------------------------------------------------------
+     Cursor glow
+     --------------------------------------------------------- */
+  const glow = document.getElementById("cursorGlow");
+  if (glow && window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
+    let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
+    let cx = gx, cy = gy;
+
+    window.addEventListener("pointermove", function (e) {
+      gx = e.clientX; gy = e.clientY;
+      glow.classList.add("is-on");
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", function () { glow.classList.remove("is-on"); });
+
+    (function loop() {
+      cx += (gx - cx) * 0.12;
+      cy += (gy - cy) * 0.12;
+      glow.style.transform = "translate3d(" + cx + "px," + cy + "px,0)";
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------------------------------------------------------
+     Pointer-tracked glow inside skill cards
+     --------------------------------------------------------- */
+  document.querySelectorAll(".skill-card").forEach(function (card) {
+    card.addEventListener("pointermove", function (e) {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (e.clientX - rect.left) + "px");
+      card.style.setProperty("--my", (e.clientY - rect.top) + "px");
+    });
+  });
+
   /* ---------------------------------------------------------
      Contact form → direct send (no mail app needed)
 
