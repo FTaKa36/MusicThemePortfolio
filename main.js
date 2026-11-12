@@ -371,7 +371,9 @@
         return;
       }
 
-      const subject = "[Portfolio] " + topic.value + " — " + name.value.trim();
+      // Strip line breaks so the name can't inject extra mail headers.
+      const cleanName = name.value.replace(/[\r\n]+/g, " ").trim();
+      const subject = "[Portfolio] " + topic.value + " — " + cleanName;
       const body =
         "Name: " + name.value.trim() + "\n" +
         "Email: " + email.value.trim() + "\n" +
@@ -386,10 +388,11 @@
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           subject: subject,
-          name: name.value.trim(),
+          name: cleanName,
           email: email.value.trim(),
           topic: topic.value,
           message: message.value.trim(),
+          _honey: form.elements["_honey"].value,
           _replyto: email.value.trim(),
           _template: "table",
           _captcha: "false",
