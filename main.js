@@ -245,27 +245,63 @@
     sections.forEach(function (s) { sio.observe(s); });
   }
 
-   /* ---------------------------------------------------------
-     Cursor glow
+  /* ---------------------------------------------------------
+     Cursor light + trailing dots
+     Each dot eases toward the previous point, so the trail
+     lags behind the pointer and fades out along the path.
      --------------------------------------------------------- */
   const glow = document.getElementById("cursorGlow");
-  if (glow && window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
+  const trails = Array.prototype.slice.call(document.querySelectorAll(".cursor-trail"));
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (canHover && !reduceMotion) {
     let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
     let cx = gx, cy = gy;
+    const points = trails.map(function () { return { x: gx, y: gy }; });
 
     window.addEventListener("pointermove", function (e) {
       gx = e.clientX; gy = e.clientY;
-      glow.classList.add("is-on");
+      if (glow) glow.classList.add("is-on");
+      trails.forEach(function (dot) { dot.classList.add("is-on"); });
     }, { passive: true });
 
-    document.addEventListener("mouseleave", function () { glow.classList.remove("is-on"); });
+    document.addEventListener("mouseleave", function () {
+      if (glow) glow.classList.remove("is-on");
+      trails.forEach(function (dot) { dot.classList.remove("is-on"); });
+    });
 
     (function loop() {
       cx += (gx - cx) * 0.12;
       cy += (gy - cy) * 0.12;
-      glow.style.transform = "translate3d(" + cx + "px," + cy + "px,0)";
+      if (glow) glow.style.transform = "translate3d(" + cx + "px," + cy + "px,0)";
+
+      let leadX = cx, leadY = cy;
+      trails.forEach(function (dot, i) {
+        const p = points[i];
+        const ease = 0.3 - i * 0.07;
+        p.x += (leadX - p.x) * ease;
+        p.y += (leadY - p.y) * ease;
+        dot.style.transform = "translate3d(" + p.x + "px," + p.y + "px,0)";
+        leadX = p.x; leadY = p.y;
+      });
+
       requestAnimationFrame(loop);
     })();
+  }
+
+  /* ---------------------------------------------------------
+     Scroll progress bar
+     --------------------------------------------------------- */
+  const scrollBar = document.getElementById("scrollBar");
+  if (scrollBar) {
+    function updateScrollBar() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, (window.scrollY || window.pageYOffset) / max) : 0;
+      scrollBar.style.transform = "scaleX(" + ratio + ")";
+    }
+    window.addEventListener("scroll", updateScrollBar, { passive: true });
+    window.addEventListener("resize", updateScrollBar);
+    updateScrollBar();
   }
 
   /* ---------------------------------------------------------

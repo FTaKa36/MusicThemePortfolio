@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FaathirTaKa (TK) — Multi-Disciplinary Developer</title>
-  <meta name="description" content="Faathir Kuspratama Pasha — known as FaathirTaKa, TaKa, Pasha, or TK. Multi-disciplinary developer building websites, Flutter mobile apps, and games." />
-  <meta name="theme-color" content="#14100f" />
+  <title>FaathirTaKa | Developer</title>
+  <meta name="description" content="Faathir Kuspratama Pasha, also known as FaathirTaKa or TK. I build websites, Flutter Android apps, and games." />
+  <meta name="theme-color" content="#0f0c0b" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="FaathirTaKa (TK) — Multi-Disciplinary Developer" />
-  <meta property="og:description" content="Web, Flutter mobile, and game development by Faathir Kuspratama Pasha (FaathirTaKa / TaKa / Pasha / TK)." />
+  <meta property="og:title" content="Faathir | Developer" />
+  <meta property="og:description" content="Websites, Flutter Android apps, and games by Faathir Kuspratama Pasha (FaathirTaKa / TaKa / Pasha / TK)." />
   <meta property="og:image" content="https://avatars.githubusercontent.com/FTaKa36" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -36,8 +36,8 @@
     </div>
   </div>
 
-  <!-- Ambient glow layers -->
-  <div class="ambient" aria-hidden="true">
+  <!-- Ambient background light -->
+  <div class="ambient" id="ambient" aria-hidden="true">
     <div class="ambient__blob ambient__blob--cherry"></div>
     <div class="ambient__blob ambient__blob--peach"></div>
     <div class="ambient__blob ambient__blob--rose"></div>
@@ -50,10 +50,13 @@
     <span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9836;</span>
   </div>
 
-  <!-- Custom cursor glow -->
+  <!-- Cursor light and its trailing dots -->
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="cursor-trail cursor-trail--1" aria-hidden="true"></div>
+  <div class="cursor-trail cursor-trail--2" aria-hidden="true"></div>
+  <div class="cursor-trail cursor-trail--3" aria-hidden="true"></div>
 
-  <!-- Scroll progress (equalizer style) -->
+  <!-- Scroll progress -->
   <div class="scroll-meter" aria-hidden="true"><span id="scrollBar"></span></div>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -78,9 +81,9 @@
 
       <ul class="nav__links" id="navLinks">
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#work">Projects</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#playlist">Playlist</a></li>
+        <li><a href="#playlist">Links</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
@@ -101,29 +104,28 @@
     <section class="hero" id="top">
       <div class="wrap hero__grid">
         <div class="hero__copy">
-          <p class="eyebrow reveal">Available for freelance &amp; collabs</p>
+          <p class="eyebrow reveal">Open to freelance work and collabs</p>
 
           <h1 class="hero__title">
-            <span class="reveal"> <em>Websites</em>, <em>apps</em>,</span>
-            <span class="reveal">and <em>games</em> built</span>
-            <span class="reveal">to be used.</span>
+            <span class="reveal"><em>Websites</em>, <em>apps</em>,</span>
+            <span class="reveal">and <em>games</em></span>
+            <span class="reveal">made to be used.</span>
           </h1>
 
           <p class="hero__lede reveal">
-            Hey, I'm <strong>Hieronimus Faathir Kuspratama Pasha</strong> — known as
-            <strong>Faathir</strong> <strong>FaathirTaKa</strong>, <strong>TaKa</strong>, <strong>Pasha</strong>, <strong>FTK</strong> or
-            <strong>TK</strong>. A multi-disciplinary developer working across
-            <strong>websites</strong>, <strong>Flutter Android apps</strong>, and
-            <strong>games</strong>. I care about clear structure, readable code,
-            and interfaces that stay out of the way.
+            Hi, I'm <strong>Hieronimus Faathir Kuspratama Pasha</strong>. People call me
+            <strong>Faathir</strong>, <strong>FaathirTaKa</strong>, <strong>TaKa</strong>,
+            <strong>Pasha</strong>, <strong>FTK</strong>, or <strong>TK</strong>. I build websites,
+            Flutter Android apps, and games. I like code that's easy to read and interfaces
+            that stay out of your way.
           </p>
 
           <div class="hero__cta reveal">
             <a class="btn btn--primary" href="#work">
-              <span>See the work</span>
+              <span>See my work</span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg>
             </a>
-            <a class="btn btn--ghost" href="#contact">Let's collaborate</a>
+            <a class="btn btn--ghost" href="#contact">Get in touch</a>
           </div>
 
           <dl class="hero__stats reveal">
@@ -142,7 +144,7 @@
           </dl>
         </div>
 
-        <!-- Now Playing / vinyl turntable -->
+        <!-- Now playing / turntable -->
         <div class="hero__deck reveal">
           <div class="turntable">
             <svg class="turntable__ring" viewBox="0 0 200 200" role="presentation">
@@ -176,8 +178,8 @@
             </div>
             <div class="nowplaying__meta">
               <span class="nowplaying__tag">Side A · Track 01</span>
-              <p class="nowplaying__title">Cublak-Cublak Suweng — Drill</p>
-              <p class="nowplaying__sub">Background audio · click the record to pause</p>
+              <p class="nowplaying__title">Cublak-Cublak Suweng (Drill)</p>
+              <p class="nowplaying__sub">Background audio. Click the record to pause.</p>
             </div>
           </div>
         </div>
@@ -201,8 +203,7 @@
           <p class="kicker reveal"><span>01</span> Skills</p>
           <h2 class="section__title reveal">What I <em>work</em> with</h2>
           <p class="section__lede reveal">
-            Five disciplines, one workflow: from layout and interaction to shipping
-            a working build.
+            Five areas that fit together: layout and interaction, then a build that actually runs.
           </p>
         </header>
 
@@ -217,8 +218,8 @@
             </div>
             <h3>Website Development</h3>
             <p>
-              Responsive, fast front-ends and solid back-ends. Landing pages, dashboards, and
-              full-stack apps built with semantic HTML, modern CSS, and clean JavaScript.
+              Pages that load quickly and work on phones, plus a back-end when a site needs one.
+              Landing pages, dashboards, and full-stack apps.
             </p>
             <ul class="tags">
               <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Laravel</li><li>REST APIs</li>
@@ -234,10 +235,11 @@
                 <svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.6h3"/></svg>
               </span>
             </div>
-            <h3>Mobile · Flutter</h3>
+            <h3>Mobile with Flutter</h3>
             <p>
-              Android apps built with Flutter and Dart — pure Flutter/Dart, no Android Studio.
-              Smooth animation, offline-first state, and interfaces that feel native.
+              Android apps written in Flutter and Dart. I work in the Flutter toolchain directly,
+              without Android Studio. I care about smooth animation, offline data, and screens
+              that feel native.
             </p>
             <ul class="tags">
               <li>Flutter</li><li>Dart</li><li>Android</li>
@@ -255,9 +257,9 @@
             </div>
             <h3>Game Development</h3>
             <p>
-              Building 2D visual novels with GDevelop 5 — branching stories, dialogue systems,
-              and level flow. Currently learning Unity and Godot to take the next step into 3D and
-              deeper gameplay work.
+              2D visual novels made in GDevelop 5, with branching stories, dialogue systems, and
+              level flow. I'm learning Unity and Godot so I can move on to 3D and more complex
+              gameplay.
             </p>
             <ul class="tags">
               <li>GDevelop 5</li><li>Visual Novel</li><li>2D</li><li>Learning Unity</li><li>Learning Godot</li><li>Game Design</li>
@@ -275,8 +277,9 @@
             </div>
             <h3>UI / UX Design</h3>
             <p>
-              Interface systems with a point of view — typography, rhythm, contrast, and motion
-              that makes products read as intentional rather than templated.
+              Clear type, comfortable spacing, and enough contrast to read easily. I use motion
+              when it helps someone understand what just happened, and I check accessibility
+              while I work, not at the end.
             </p>
             <ul class="tags">
               <li>Figma</li><li>Design Systems</li><li>Prototyping</li><li>Typography</li><li>Motion</li><li>Accessibility</li>
@@ -294,8 +297,8 @@
             </div>
             <h3>Tools &amp; Workflow</h3>
             <p>
-              Version control, clean commits, readable architecture, and the boring discipline
-              that keeps a project maintainable long after launch day.
+              Git, small clean commits, and code that's easy to come back to months later. The
+              unglamorous habits that keep a project working after launch.
             </p>
             <ul class="tags">
               <li>Git</li><li>GitHub</li><li>VS Code</li><li>Vercel</li><li>Windows</li><li>Android</li>
@@ -306,15 +309,14 @@
       </div>
     </section>
 
-    <!-- ============ WORK / SETLIST ============ -->
+    <!-- ============ WORK ============ -->
     <section class="section section--alt" id="work">
       <div class="wrap">
         <header class="section__head">
           <p class="kicker reveal"><span>02</span> Projects</p>
-          <h2 class="section__title reveal">Selected <em>experience</em></h2>
+          <h2 class="section__title reveal">Selected <em>work</em></h2>
           <p class="section__lede reveal">
-            Everything below is my real project list — what's shipped and done, and what's
-            still in development. Each row shows its current status.
+            The projects I've made, with the current status of each one.
           </p>
         </header>
 
@@ -323,7 +325,7 @@
             <span class="setlist__no">01</span>
             <div class="setlist__body">
               <h3>Personal Portfolio <span class="pill pill--live">Live</span></h3>
-              <p>The site you're looking at: a static build with no framework, a theme system, and a custom audio player.</p>
+              <p>This site. Plain HTML, CSS, and JavaScript, with a theme switch and a custom audio player.</p>
               <ul class="tags tags--sm"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/MusicThemePortfolio" target="_blank" rel="noopener noreferrer">
@@ -336,7 +338,7 @@
             <span class="setlist__no">02</span>
             <div class="setlist__body">
               <h3>Visual Novel Game <span class="pill pill--live">Released</span></h3>
-              <p>A simple horror visual novel — a paid project for a student client. Branching dialogue, atmosphere, and a full playable story.</p>
+              <p>A short horror visual novel I made for a student client. Branching dialogue, a tense atmosphere, and a full story you can play through.</p>
               <ul class="tags tags--sm"><li>GDevelop 5</li><li>Game</li><li>Horror</li><li>Client work</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/VisualNovelGame" target="_blank" rel="noopener noreferrer">
@@ -349,7 +351,7 @@
             <span class="setlist__no">03</span>
             <div class="setlist__body">
               <h3>YouTube Downloader <span class="pill pill--live">Released</span></h3>
-              <p>A personal video and music downloader. Some features may still not work properly — an update could land at any time.</p>
+              <p>A personal tool for downloading videos and music. Some features don't work fully yet, and an update could come at any time.</p>
               <ul class="tags tags--sm"><li>Python</li><li>Desktop</li><li>Tool</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/YouTube-Downloader" target="_blank" rel="noopener noreferrer">
@@ -362,7 +364,7 @@
             <span class="setlist__no">04</span>
             <div class="setlist__body">
               <h3>E-Commerce Website Template <span class="pill">Under development</span></h3>
-              <p>Started as a campus project, now being rebuilt into something fresh and serious — a storefront that works as a showcase for my name.</p>
+              <p>Started as a campus project. I'm rebuilding it as a storefront that also works as a showcase of my work.</p>
               <ul class="tags tags--sm"><li>Web</li><li>E-Commerce</li><li>Template</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/StoreTemplate" target="_blank" rel="noopener noreferrer">
@@ -375,7 +377,7 @@
             <span class="setlist__no">05</span>
             <div class="setlist__body">
               <h3>MusiCollector <span class="pill">Unreleased</span></h3>
-              <p>Save your favourite tracks in one place. Drop a YouTube, Spotify, or other link and the song is stored in browser cache — playback sometimes works, sometimes not, so some features may still be rough. Updates are possible.</p>
+              <p>Keep your favourite tracks in one place. Paste a YouTube, Spotify, or other link and the song is cached in the browser. Playback works sometimes and not others, so expect rough edges. Updates are possible.</p>
               <ul class="tags tags--sm"><li>Web</li><li>Music</li><li>LocalStorage</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/MusiCollector" target="_blank" rel="noopener noreferrer">
@@ -388,7 +390,7 @@
             <span class="setlist__no">06</span>
             <div class="setlist__body">
               <h3>Website QGIS <span class="pill">Unreleased</span></h3>
-              <p>A campus project, shipped as-is with no further feature updates planned.</p>
+              <p>A campus project, shipped as is. No further feature updates are planned.</p>
               <ul class="tags tags--sm"><li>Web</li><li>QGIS</li><li>Campus project</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/ProjectWebsiteQGIS" target="_blank" rel="noopener noreferrer">
@@ -401,7 +403,7 @@
             <span class="setlist__no">07</span>
             <div class="setlist__body">
               <h3>SongDatabase Flutter <span class="pill">Unreleased</span></h3>
-              <p>A campus-project mobile app for saving your favourite songs. Needs a hosting backend — local or paid — to run. Shipped with no further feature updates planned.</p>
+              <p>A campus mobile app for saving favourite songs. It needs a backend, either local or paid, to run. Shipped as is, with no further updates planned.</p>
               <ul class="tags tags--sm"><li>Flutter</li><li>Dart</li><li>Mobile</li><li>Campus project</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/FTaKa36/ProjectWebsiteQGIS" target="_blank" rel="noopener noreferrer">
@@ -410,11 +412,11 @@
             </a>
           </li>
 
-            <li class="setlist__item reveal" style="--i:7">
+          <li class="setlist__item reveal" style="--i:7">
             <span class="setlist__no">08</span>
             <div class="setlist__body">
-              <h3>Personal Cat Detector <span class="pill">Under development</span></h3> 
-              <p>A cat detector project that currently can only detect race, this is my friend project(shoutout to <a class="shoutout_link" href="https://github.com/chameleon54" target="_blank" rel="noopener noreferrer">chame</a>) I helped him as an UI/UX website. In the future we will add new feature.</p>
+              <h3>Personal Cat Detector <span class="pill">Under development</span></h3>
+              <p>A cat detector that can currently tell breeds apart. I built the UI and website for my friend <a class="shoutout_link" href="https://github.com/chameleon54" target="_blank" rel="noopener noreferrer">chame</a>'s project, and more features are planned.</p>
               <ul class="tags tags--sm"><li>Teamwork</li><li>Machine Learning</li><li>Website</li><li>UI/UX</li><li>HTML</li><li>CSS</li><li>JS</li></ul>
             </div>
             <a class="setlist__link" href="https://github.com/chameleon54/personal-cat-detector" target="_blank" rel="noopener noreferrer">
@@ -423,11 +425,11 @@
             </a>
           </li>
 
-            <li class="setlist__item reveal" style="--i:8">
+          <li class="setlist__item reveal" style="--i:8">
             <span class="setlist__no">09</span>
             <div class="setlist__body">
-              <h3>SMA Laboratorium UPGRIS Website <span class="pill pill--live">Released</span></h3> 
-              <p>A website that introduce SMA Laboratorium UPGRIS, I worked the website as a fullstack using laravel.</p>
+              <h3>SMA Laboratorium UPGRIS Website <span class="pill pill--live">Released</span></h3>
+              <p>A website introducing SMA Laboratorium UPGRIS. I built it as a full-stack project with Laravel.</p>
               <ul class="tags tags--sm"><li>Fullstack</li><li>Data Input</li><li>Website</li><li>UI/UX</li><li>HTML</li><li>CSS</li><li>JS</li><li>Laravel</li></ul>
             </div>
             <a class="setlist__link" href="https://smalaboratoriumupgris.sch.id" target="_blank" rel="noopener noreferrer">
@@ -471,16 +473,15 @@
 
         <div class="about__copy">
           <p class="kicker reveal"><span>03</span> About</p>
-          <h2 class="section__title reveal">Developer, <em>designer</em>, player</h2>
+          <h2 class="section__title reveal">About <em>me</em></h2>
           <p class="reveal">
-            I'm <strong>Faathir Kuspratama Pasha</strong> — <strong>FaathirTaKa</strong>,
-            <strong>TaKa</strong>, <strong>Pasha</strong>, or just <strong>TK</strong>. I got into
-            code by wanting to make something I'd actually enjoy using, and that curiosity spread
-            outward into web, mobile, and games.
+            I'm <strong>Faathir Kuspratama Pasha</strong>. Most people know me as <strong>TaKa</strong>,
+            <strong>Pasha</strong>, or <strong>TK</strong>. I started coding because I wanted to make
+            things I'd enjoy using, and that grew into web, mobile, and game work.
           </p>
           <p class="reveal">
-            My approach is simple. Understand the tempo of the problem, build the smallest thing
-            that's genuinely good, then layer detail until it feels warm and obvious in hindsight.
+            My process is simple. Figure out what the problem actually needs, build the smallest
+            version that works well, then add detail until it feels right.
           </p>
 
           <ul class="facts">
@@ -501,13 +502,13 @@
       </div>
     </section>
 
-    <!-- ============ PLAYLIST / LINKS ============ -->
+    <!-- ============ LINKS ============ -->
     <section class="section section--alt" id="playlist">
       <div class="wrap">
         <header class="section__head">
           <p class="kicker reveal"><span>04</span> Links</p>
           <h2 class="section__title reveal">Find me <em>online</em></h2>
-          <p class="section__lede reveal">Same work, different platforms.</p>
+          <p class="section__lede reveal">The same work, posted in a few different places.</p>
         </header>
 
         <div class="links">
@@ -544,7 +545,7 @@
             <svg class="link-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
 
-          <a class="link-card reveal" style="--i:7" href="https://www.linkedin.com/in/fkp36" target="_blank" rel="noopener noreferrer">
+          <a class="link-card reveal" style="--i:3" href="https://www.linkedin.com/in/fkp36" target="_blank" rel="noopener noreferrer">
             <span class="link-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.9v.1M12 16v-3.2a1.9 1.9 0 0 1 3.8 0V16"/></svg>
             </span>
@@ -563,15 +564,15 @@
       <div class="wrap contact">
         <div class="contact__intro">
           <p class="kicker reveal"><span>05</span> Contact</p>
-          <h2 class="section__title reveal">Have a project in <em>mind</em>?</h2>
+          <h2 class="section__title reveal">Got a <em>project</em>?</h2>
           <p class="section__lede reveal">
-            Tell me what you're building: a landing page, a Flutter app, or a game.
+            Tell me what you're working on. A landing page, a Flutter app, or a game are all fine.
           </p>
 
           <ul class="contact__points">
-            <li class="reveal"><span aria-hidden="true">◆</span> Replies within 1–2 days</li>
-            <li class="reveal"><span aria-hidden="true">◆</span> Freelance &amp; long-term collabs</li>
-            <li class="reveal"><span aria-hidden="true">◆</span> Remote-friendly, worldwide</li>
+            <li class="reveal"><span aria-hidden="true">◆</span> Usually replies within 1 to 2 days</li>
+            <li class="reveal"><span aria-hidden="true">◆</span> Freelance and long-term work</li>
+            <li class="reveal"><span aria-hidden="true">◆</span> Remote, anywhere in the world</li>
           </ul>
         </div>
 
@@ -585,7 +586,7 @@
             <input id="cf-email" name="email" type="email" required placeholder="jane@example.com" autocomplete="email" />
           </div>
           <div class="field">
-            <label for="cf-topic">What's it about?</label>
+            <label for="cf-topic">What is it about?</label>
             <select id="cf-topic" name="topic">
               <option>Website development</option>
               <option>Mobile app (Flutter)</option>
@@ -596,10 +597,10 @@
           </div>
           <div class="field">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required placeholder="A quick note about the project, timeline, and budget range..."></textarea>
+            <textarea id="cf-message" name="message" rows="5" required placeholder="A short note about the project, the timeline, and your budget..."></textarea>
           </div>
           <button class="btn btn--primary btn--full" type="submit">
-            <span>Send the demo</span>
+            <span>Send message</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
           </button>
           <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
@@ -619,22 +620,22 @@
             <circle cx="20" cy="20" r="1.8" class="disc-hole" />
           </svg>
         </span>
-        <p>FaathirTaKa. Built by hand, without a template.</p>
+        <p>FaathirTaKa. Made by hand.</p>
       </div>
 
       <nav class="footer__nav" aria-label="Footer">
         <a href="#skills">Skills</a>
-        <a href="#work">Work</a>
+        <a href="#work">Projects</a>
         <a href="#about">About</a>
-        <a href="#playlist">Playlist</a>
+        <a href="#playlist">Links</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="footer__meta">
         <span>&copy; <span id="year">2026</span> Faathir Kuspratama Pasha</span>
         <span>Static HTML, CSS, and JavaScript.</span>
-        <span>Background music: <a class="shoutout_link" href="https://www.youtube.com/watch?v=3g1j0k5J6xM" target="_blank" rel="noopener noreferrer">Cublak-Cublak Suweng — Drill</a></span>
-        <span>I do not have copyright for the background music.</span>
+        <span>Background music: <a class="shoutout_link" href="https://www.youtube.com/watch?v=3g1j0k5J6xM" target="_blank" rel="noopener noreferrer">Cublak-Cublak Suweng (Drill)</a></span>
+        <span>I do not own the copyright to the background music.</span>
         <span>Icons: <a class="shoutout_link" href="https://iconmonstr.com/" target="_blank" rel="noopener noreferrer">iconmonstr</a></span>
         <span>Fonts: <a class="shoutout_link" href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noopener noreferrer">JetBrains Mono</a></span>
       </div>
